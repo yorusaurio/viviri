@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Viviana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            max-width: 90vw;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: #fff;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .message {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: #fff;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 1.5s forwards;
+            line-height: 1.8;
+        }
+
+        .timer {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-weight: 200;
+            letter-spacing: 0.1em;
+            color: #fff;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 2.5s forwards;
+            margin-top: 3rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-label {
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            animation: fadeIn 2s ease-in 3s forwards;
+            margin-top: 0.5rem;
+            text-transform: lowercase;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: clamp(3rem, 12vw, 5rem);
+                letter-spacing: 0.2em;
+                margin-bottom: 1.5rem;
+            }
+            
+            .message {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+                letter-spacing: 0.1em;
+            }
+
+            .timer {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+                margin-top: 2rem;
+            }
+
+            .timer-label {
+                font-size: clamp(1rem, 3vw, 1.5rem);
+                margin-top: 1rem;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            opacity: 0;
+            border-radius: 50%;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.15s ease-out;
+            z-index: 1000;
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .cursor-follower {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-follower"></div>
+    <div class="container">
+        <h1>Viviana</h1>
+        <p class="message">Te extraño</p>
+        <div class="timer">
+            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+        </div>
+        <p class="timer-label">sin verte</p>
+    </div>
+
+    <script>
+        // Cursor personalizado
+        const follower = document.querySelector('.cursor-follower');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            follower.style.left = (mouseX - 20) + 'px';
+            follower.style.top = (mouseY - 20) + 'px';
+        });
+
+        // Crear partículas flotantes al hacer clic o touch
+        document.addEventListener('click', (e) => {
+            for (let i = 0; i < 5; i++) {
+                createParticle(e.clientX, e.clientY);
+            }
+        });
+
+        document.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            for (let i = 0; i < 5; i++) {
+                createParticle(touch.clientX, touch.clientY);
+            }
+        });
+
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'heart';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            
+            const duration = 3 + Math.random() * 2;
+            const delay = Math.random() * 0.5;
+            const offsetX = (Math.random() - 0.5) * 100;
+            
+            particle.style.animation = `float ${duration}s ease-in ${delay}s forwards`;
+            particle.style.setProperty('--offset-x', offsetX + 'px');
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        // Animación de fondo sutil
+        let particles = [];
+        function createBackgroundParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'heart';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.width = (Math.random() * 3 + 1) + 'px';
+            particle.style.height = particle.style.width;
+            
+            const duration = 8 + Math.random() * 4;
+            particle.style.animation = `float ${duration}s linear forwards`;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createBackgroundParticle, 3000);
+
+        // Contador de tiempo desde la última vez que la viste
+        // Última vez: 24 de enero de 2026, 8:00 PM (hora peruana - UTC-5)
+        const lastSeen = new Date('2026-01-24T20:00:00-05:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - lastSeen;
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
