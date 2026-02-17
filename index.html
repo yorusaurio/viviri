@@ -1,245 +1,128 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Viviana</title>
+    <meta name="description" content="Un mensaje especial para Viviana - Miraculous Ladybug">
+    <meta name="theme-color" content="#E41E2B">
+    <title>Viviana 🐞 Miraculous</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🐞</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Righteous&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ladybug: {
+                            red: '#E41E2B',
+                            light: '#FF4655',
+                            dark: '#A01520',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            font-family: 'Georgia', serif;
-            overflow: hidden;
-        }
-
-        .container {
-            text-align: center;
-            position: relative;
-            padding: 2rem;
-            max-width: 90vw;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 8vw, 5rem);
-            font-weight: 300;
-            letter-spacing: 0.3em;
-            color: #fff;
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        .message {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            color: #fff;
-            opacity: 0;
-            animation: fadeIn 2s ease-in 1.5s forwards;
-            line-height: 1.8;
-        }
-
-        .timer {
-            font-size: clamp(1.5rem, 5vw, 3rem);
-            font-weight: 200;
-            letter-spacing: 0.1em;
-            color: #fff;
-            opacity: 0;
-            animation: fadeIn 2s ease-in 2.5s forwards;
-            margin-top: 3rem;
-            font-family: 'Courier New', monospace;
-        }
-
-        .timer-label {
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.6);
-            opacity: 0;
-            animation: fadeIn 2s ease-in 3s forwards;
-            margin-top: 0.5rem;
-            text-transform: lowercase;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: clamp(3rem, 12vw, 5rem);
-                letter-spacing: 0.2em;
-                margin-bottom: 1.5rem;
-            }
-            
-            .message {
-                font-size: clamp(1.5rem, 5vw, 2rem);
-                letter-spacing: 0.1em;
-            }
-
-            .timer {
-                font-size: clamp(2.5rem, 8vw, 4rem);
-                margin-top: 2rem;
-            }
-
-            .timer-label {
-                font-size: clamp(1rem, 3vw, 1.5rem);
-                margin-top: 1rem;
-            }
-        }
-
-        .heart {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #fff;
-            opacity: 0;
-            border-radius: 50%;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) scale(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100vh) scale(1);
-                opacity: 0;
-            }
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            pointer-events: none;
-            transition: transform 0.15s ease-out;
-            z-index: 1000;
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-            .cursor-follower {
-                display: none;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); position: relative; overflow: hidden; min-height: 100vh; }
+        .bg-pattern { background-image: radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px), radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 50px 50px, 25px 25px; animation: pattern-move 20s linear infinite; }
+        @keyframes pattern-move { 0% { background-position: 0 0, 25px 25px; } 100% { background-position: 50px 50px, 75px 75px; } }
+        .glass-card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px rgba(228, 30, 43, 0.2); }
+        @keyframes spot-pulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.2); opacity: 0.9; } }
+        .ladybug-spot { width: 12px; height: 12px; background: radial-gradient(circle, #000 0%, #333 100%); border-radius: 50%; box-shadow: inset 0 -2px 4px rgba(0,0,0,0.5); animation: spot-pulse 3s ease-in-out infinite; }
+        .timer-glow { text-shadow: 0 0 10px rgba(228, 30, 43, 0.8), 0 0 20px rgba(228, 30, 43, 0.6), 0 0 30px rgba(228, 30, 43, 0.4); }
+        @keyframes float-up { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        .particle { position: fixed; pointer-events: none; animation: float-up 8s linear; }
+        @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .gradient-text { background: linear-gradient(90deg, #E41E2B 0%, #FF4655 25%, #fff 50%, #FF4655 75%, #E41E2B 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 3s ease infinite; }
     </style>
 </head>
-<body>
-    <div class="cursor-follower"></div>
-    <div class="container">
-        <h1>Viviana</h1>
-        <p class="message">Te extraño</p>
-        <div class="timer">
-            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+<body class="min-h-screen flex items-center justify-center bg-pattern">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style="animation-delay: 4s;"></div>
+    <div class="relative z-10 w-full max-w-2xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-6 animate-bounce">
+            <span class="text-7xl sm:text-8xl filter drop-shadow-lg">🐞</span>
         </div>
-        <p class="timer-label">sin verte</p>
+        <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-4 left-4 ladybug-spot"></div>
+            <div class="absolute top-8 right-6 ladybug-spot" style="width: 16px; height: 16px; animation-delay: 0.5s;"></div>
+            <div class="absolute bottom-6 left-8 ladybug-spot" style="width: 10px; height: 10px; animation-delay: 1s;"></div>
+            <div class="absolute bottom-12 right-4 ladybug-spot" style="width: 14px; height: 14px; animation-delay: 1.5s;"></div>
+            <div class="text-center mb-4">
+                <span class="inline-block px-4 py-1 bg-red-600 text-white text-sm font-bold uppercase tracking-widest rounded-full shadow-lg">Miraculous</span>
+            </div>
+            <h1 class="text-6xl sm:text-7xl md:text-8xl font-black text-center mb-8 gradient-text tracking-tight" style="font-family: Righteous, Impact, sans-serif;">VIVIANA</h1>
+            <div class="text-center mb-10">
+                <p class="text-3xl sm:text-4xl font-semibold text-white flex items-center justify-center gap-3">
+                    <span class="text-red-500 animate-pulse">❤️</span>
+                    <span>Te extraño</span>
+                    <span class="text-red-500 animate-pulse" style="animation-delay: 0.3s;">❤️</span>
+                </p>
+            </div>
+            <div class="bg-gradient-to-r from-red-900 via-red-600 to-red-900 rounded-2xl p-8 shadow-2xl mb-6">
+                <div id="timer" class="text-4xl sm:text-5xl font-bold text-white text-center font-mono timer-glow tracking-wider">
+                    <span id="days">0</span>d 
+                    <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                </div>
+            </div>
+            <p class="text-center text-white text-xl font-medium uppercase tracking-widest">Sin verte</p>
+            <div class="mt-8 pt-6 border-t border-white/20">
+                <p class="text-center text-white/70 text-sm italic">"En el nombre de la luna, ¡te extrañaré por siempre!" 🌙✨</p>
+            </div>
+        </div>
+        <div class="text-center mt-6 text-white/60 text-sm">
+            <p>🐞 Inspirado en Miraculous: Las Aventuras de Ladybug</p>
+        </div>
     </div>
-
     <script>
-        // Cursor personalizado
-        const follower = document.querySelector('.cursor-follower');
-        let mouseX = 0;
-        let mouseY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            follower.style.left = (mouseX - 20) + 'px';
-            follower.style.top = (mouseY - 20) + 'px';
-        });
-
-        // Crear partículas flotantes al hacer clic o touch
-        document.addEventListener('click', (e) => {
-            for (let i = 0; i < 5; i++) {
-                createParticle(e.clientX, e.clientY);
-            }
-        });
-
-        document.addEventListener('touchstart', (e) => {
-            const touch = e.touches[0];
-            for (let i = 0; i < 5; i++) {
-                createParticle(touch.clientX, touch.clientY);
-            }
-        });
-
-        function createParticle(x, y) {
-            const particle = document.createElement('div');
-            particle.className = 'heart';
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-            
-            const duration = 3 + Math.random() * 2;
-            const delay = Math.random() * 0.5;
-            const offsetX = (Math.random() - 0.5) * 100;
-            
-            particle.style.animation = `float ${duration}s ease-in ${delay}s forwards`;
-            particle.style.setProperty('--offset-x', offsetX + 'px');
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, (duration + delay) * 1000);
-        }
-
-        // Animación de fondo sutil
-        let particles = [];
-        function createBackgroundParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'heart';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            particle.style.width = (Math.random() * 3 + 1) + 'px';
-            particle.style.height = particle.style.width;
-            
-            const duration = 8 + Math.random() * 4;
-            particle.style.animation = `float ${duration}s linear forwards`;
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, duration * 1000);
-        }
-
-        setInterval(createBackgroundParticle, 3000);
-
-        // Contador de tiempo desde la última vez que la viste
-        // Última vez: 16 de febrero de 2026, 11:00 PM (hora peruana - UTC-5)
         const lastSeen = new Date('2026-02-16T23:00:00-05:00');
-
         function updateTimer() {
             const now = new Date();
-            const diff = now - lastSeen;
-
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
+            let diff = now - lastSeen;
+            if (diff < 0) diff = 0;
+            const totalSeconds = Math.floor(diff / 1000);
+            const days = Math.floor(totalSeconds / (24 * 60 * 60));
+            const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+            const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+            const seconds = totalSeconds % 60;
+            document.getElementById('days').textContent = days;
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
-
         updateTimer();
         setInterval(updateTimer, 1000);
+        document.addEventListener('click', (e) => { createParticles(e.clientX, e.clientY); });
+        document.addEventListener('touchstart', (e) => { const touch = e.touches[0]; createParticles(touch.clientX, touch.clientY); }, { passive: true });
+        function createParticles(x, y) {
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.innerHTML = Math.random() > 0.5 ? '❤️' : '🐞';
+                particle.style.fontSize = '20px';
+                particle.style.left = x + (Math.random() - 0.5) * 50 + 'px';
+                particle.style.top = y + 'px';
+                particle.style.animationDuration = (6 + Math.random() * 3) + 's';
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 10000);
+            }
+        }
+        function createBackgroundParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.innerHTML = Math.random() > 0.5 ? '✨' : '⭐';
+            particle.style.fontSize = '12px';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.bottom = '0';
+            particle.style.opacity = '0.3';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 12000);
+        }
+        setInterval(createBackgroundParticle, 3000);
     </script>
 </body>
 </html>
